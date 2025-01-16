@@ -3,7 +3,12 @@ import { useProductDetails } from "../../services/queries";
 import styles from "./ProductsManagementPage.module.css";
 import ProductItem from "../module/ProductItem";
 import Pagination from "../module/Pagination";
+import AlertModal from "../module/AlertModal";
+import { useDispatch, useSelector } from "react-redux";
+import OperationModal from "../module/OperationModal";
 function ProductsManagementPage() {
+  const modalState = useSelector((store) => store.modal);
+  const modalDispatch = useDispatch();
   const [searchProducts, setSearchProducts] = useState("");
   const [itemOffset, setItemOffset] = useState(1);
   const { data, error, isLoading, isError, isFetching } = useProductDetails(
@@ -112,6 +117,8 @@ function ProductsManagementPage() {
           totalPages={totalPages}
         />
       )}
+      {modalState.modalType === "REMOVE_PRODUCT" ? <AlertModal /> : null}
+      {modalState.modalType && modalState.modalType!=="REMOVE_PRODUCT" ? <OperationModal/>:null}
     </div>
   );
 }

@@ -1,10 +1,14 @@
 import "../styles/globals.css";
 import ReactQueryProvider from "../provider/ReactQueryProvider";
+import { Provider } from "react-redux";
+import store from "../app/store";
 function MyApp({ Component, pageProps }) {
   return (
-    <ReactQueryProvider>
-      <Component {...pageProps} />
-    </ReactQueryProvider>
+    <Provider store={store}>
+      <ReactQueryProvider>
+        <Component {...pageProps} />
+      </ReactQueryProvider>
+    </Provider>
   );
 }
 

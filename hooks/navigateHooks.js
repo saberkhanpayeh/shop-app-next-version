@@ -1,11 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 
 const useNavigateLoginPage = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const navigateLoginPage = (time = 2000) => {
     // console.log("login");
     setTimeout(() => {
-      navigate("/login");
+      router.push("/login");
     }, time);
   };
   return navigateLoginPage;
