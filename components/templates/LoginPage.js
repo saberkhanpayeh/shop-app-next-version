@@ -3,16 +3,16 @@ import { useForm } from "react-hook-form";
 import { useLogin } from "../../services/mutations";
 import { setCookie } from "../../utils/cookie";
 import { yupResolver } from "@hookform/resolvers/yup";
-import styles from "./RegistrationAndLogin.module.css";
 import { loginFromSchema } from "../../schema/validationForms";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import OpenEye from "../icons/OpenEye";
 import CloseEye from "../icons/CloseEye";
+import styles from "./RegistrationAndLogin.module.css";
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const{mutate}=useLogin();
-  const router=useRouter();
+  const { mutate } = useLogin();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -21,19 +21,19 @@ function LoginPage() {
     resolver: yupResolver(loginFromSchema),
     mode: "onChange", //real-time validation active
   });
-  const onSubmit=(data)=>{
+  const onSubmit = (data) => {
     // console.log(data);
-    mutate(data,{
-      onSuccess:(data)=>{
+    mutate(data, {
+      onSuccess: (data) => {
         // console.log(data);
-        setCookie("token",data?.data.token);
+        setCookie("token", data?.data.token);
         router.push("/");
       },
-      onError:(error)=>{
+      onError: (error) => {
         console.log(error.response.data.message);
-      }
-    })
-  }
+      },
+    });
+  };
   return (
     <div style={{ width: "33%" }} className={styles.container}>
       <a className={styles.image} href="/login"></a>
@@ -49,12 +49,12 @@ function LoginPage() {
           />
           {!showPassword ? (
             <button onClick={() => setShowPassword(true)}>
-                <OpenEye/>
+              <CloseEye />
             </button>
           ) : null}
           {showPassword ? (
             <button onClick={() => setShowPassword(false)}>
-                <CloseEye/>
+              <OpenEye />
             </button>
           ) : null}
         </div>
