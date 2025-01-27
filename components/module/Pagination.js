@@ -1,6 +1,9 @@
 import ReactPaginate from "react-paginate";
 import styles from "./Pagination.module.css";
-function Pagination({ itemOffset, setItemOffset, totalPages }) {
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+function Pagination({ query, setQuery, totalPages }) {
+  const router = useRouter();
   console.log("total Pages", totalPages);
   const handlePageClick = (event) => {
     const newOffset = event.selected + 1;
@@ -9,8 +12,16 @@ function Pagination({ itemOffset, setItemOffset, totalPages }) {
         event.selected + 1
       }, which is offset ${newOffset}`
     );
-    setItemOffset(newOffset);
+    // setItemOffset(newOffset);
+    setQuery((query) => ({ ...query, pageNumber: newOffset }));
   };
+  useEffect(() => {
+    console.log("useEffect: ", query);
+    router.push({
+      pathname: "/",
+      query,
+    });
+  }, [query.pageNumber]);
 
   return (
     <>
@@ -18,15 +29,15 @@ function Pagination({ itemOffset, setItemOffset, totalPages }) {
         breakLabel="..."
         nextLabel={totalPages > 4 ? "بعدی" : null}
         onPageChange={handlePageClick}
-        forcePage={itemOffset - 1}
+        forcePage={query.pageNumber - 1}
         pageRangeDisplayed={5}
         pageCount={totalPages}
-        previousLabel={itemOffset > 1 ? "قبلی" : null}
+        previousLabel={query.pageNumber > 1 ? "قبلی" : null}
         renderOnZeroPageCount={null}
         containerClassName={styles.pagination}
         pageLinkClassName={styles.pageNumber}
         previousLinkClassName={
-          itemOffset <= 1 ? styles.disabled : styles.pageNumber
+          query.pageNumber <= 1 ? styles.disabled : styles.pageNumber
         }
         nextLinkClassName={
           totalPages <= 4 ? styles.disabled : styles.pageNumber

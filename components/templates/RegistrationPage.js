@@ -36,7 +36,7 @@ function RegistrationPage() {
   return (
     <div className={styles.container}>
       {/* <img src={SiteLogo} alt="logo"/> */}
-      <a className={styles.image} href="/registration"></a>
+      <a className={styles.image} href="/registration"rel="noopener noreferrer"  target="_blank"></a>
       <h2>فرم ثبت نام</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input {...register("username")} placeholder="نام کابری" />

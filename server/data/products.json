@@ -1,9 +1,9 @@
 [
   {
     "id": "9bafa87d-754a-48c1-ba80-4589d15fc5bc",
-    "name": "ipad",
+    "name": "ipad mini2",
     "price": "789321.25",
-    "quantity": "21"
+    "quantity": "25"
   },
   {
     "id": "6fb1dde9-9367-41af-86a4-c76c957d02f7",
@@ -304,5 +304,11 @@
     "name": "ipad pro",
     "price": "2100000000",
     "quantity": "54"
+  },
+  {
+    "id": "3806cb7d-c30b-4501-9633-b2b8d2c97acf",
+    "name": "آیفون 16 پرو مکس",
+    "price": "6050000",
+    "quantity": "10"
   }
 ]

@@ -36,7 +36,7 @@ function LoginPage() {
   };
   return (
     <div style={{ width: "33%" }} className={styles.container}>
-      <a className={styles.image} href="/login"></a>
+      <a className={styles.image} href="/login" rel="noopener noreferrer" target="_blank"></a>
       <h2>فرم ورود</h2>
       <form style={{ padding: "0 35px" }} onSubmit={handleSubmit(onSubmit)}>
         <input {...register("username")} placeholder="نام کابری" />

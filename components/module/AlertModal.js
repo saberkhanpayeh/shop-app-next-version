@@ -37,7 +37,7 @@ function AlertModal() {
   return (
     <div className={styles.wrapper}>
         <div className={styles.container}>
-            <img  alt="close-icon" />
+            <img src="/images/Close.png" alt="close-icon" />
             <p>{formTitle}</p>
             <div>
                 <button onClick={removeHandler}>{confirmBtn}</button>

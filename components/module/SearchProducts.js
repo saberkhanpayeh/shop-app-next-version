@@ -1,19 +1,27 @@
 import React, { useRef } from "react";
 import styles from "./SearchProducts.module.css";
 import Search from "../icons/Search";
-function SearchProducts({ setSearchProducts }) {
-  const inputRef = useRef(null);
+import { useRouter } from "next/router";
+function SearchProducts({ query, setQuery }) {
+  const router = useRouter();
   const searchHandler = () => {
-    const inputValue = inputRef.current.value.toLowerCase().trim();
-    setSearchProducts(inputValue);
+    event.preventDefault();
+    router.push({
+      pathname: "/",
+      query,
+    });
+  };
+  const changeHandler = (event) => {
+    const value = event.target.value.toLowerCase().trim();
+    setQuery((query) => ({ ...query, searchProduct: value }));
   };
   return (
-    <div className={styles.container}>
+    <form className={styles.container} onChange={changeHandler}>
       <button onClick={searchHandler}>
         <Search />
       </button>
-      <input type="text" ref={inputRef} placeholder="جستجو کالا" />
-    </div>
+      <input type="text" placeholder="جستجو کالا" name="search" id="search" value={query.searchProduct}/>
+    </form>
   );
 }
 

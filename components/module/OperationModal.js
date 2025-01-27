@@ -35,7 +35,7 @@ function OperationModal() {
   const refreshProductsPage = () => {
     invalidateQuery(["products"]);
     modalDispatch(removeProductForm());
-    navigate("/");
+    router.push("/");
   };
   // const navigateLoginPage=(time=2000)=>{
   //   setTimeout(()=>{
