@@ -13,14 +13,14 @@ function SearchProducts({ query, setQuery }) {
   };
   const changeHandler = (event) => {
     const value = event.target.value.toLowerCase().trim();
-    setQuery((query) => ({ ...query, searchProduct: value }));
+    setQuery((query) => ({ pageNumber: 1, searchProduct: value }));
   };
   return (
     <form className={styles.container} onChange={changeHandler}>
       <button onClick={searchHandler}>
         <Search />
       </button>
-      <input type="text" placeholder="جستجو کالا" name="search" id="search"/>
+      <input type="text" placeholder="جستجو کالا" name="search" id="search" />
     </form>
   );
 }

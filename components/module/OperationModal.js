@@ -10,6 +10,8 @@ import styles from "./OperationModal.module.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { productsFormSchema } from "../../schema/validationForms";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import { toastOptions } from "../../constants/toast";
 
 function OperationModal() {
   const router = useRouter();
@@ -37,32 +39,32 @@ function OperationModal() {
     modalDispatch(removeProductForm());
     router.push("/");
   };
-  // const navigateLoginPage=(time=2000)=>{
-  //   setTimeout(()=>{
-  //     navigate("/login");
-  //   },time)
-  // }
+
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     if (modalState.modalType === "ADD_FORM") {
       addMutate(data, {
         onSuccess: (data) => {
+          toast.success("کالای مورد نظر با موفقیت اضافه شد", toastOptions);
           // console.log(data);
           refreshProductsPage();
         },
         onError: (error) => {
+          toast.error("مشکلی در اضافه کردن محصول وجود دارد", toastOptions);
           console.log(error.response.data.message);
           navigateLoginPage();
         },
       });
     } else if (modalState.modalType === "EDIT_FORM") {
-      console.log(data);
+      // console.log(data);
       editMutate(data, {
         onSuccess: (data) => {
+          toast.success("مشخصات کالای مورد نظر با موفقیت ویرایش گردید",toastOptions);
           // console.log(data);
           refreshProductsPage();
         },
         onError: (error) => {
+          toast.error("مشکلی در ویرایش مشخصات محصول وجود دارد!",toastOptions);
           console.log(error.response.data.message);
           navigateLoginPage();
         },

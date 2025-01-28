@@ -6,6 +6,8 @@ import { useInvalidateQuery } from '../../services/queries';
 import { removeProductForm } from '../../features/modal/modalSlice';
 import styles from "./AlertModal.module.css";
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
+import { toastOptions } from '../../constants/toast';
 function AlertModal() {
     const router=useRouter();
     const modalState=useSelector((store)=>store.modal);
@@ -20,11 +22,13 @@ function AlertModal() {
             onSuccess:(data)=>{
                 // console.log(data);
                 modalDispatch(removeProductForm());
+                toast.info("محصول مورد نظر حذف شد!",toastOptions);
                 invalidateQuery(["products"]);
                 router.push("/");
             },
             onError:(error)=>{
                 console.log(error.response.data.message);
+                toast.error("مشکلی در حذف محصول وجود دارد",toastOptions);
                 navigteLoginPage();
             }
         })

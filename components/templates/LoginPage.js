@@ -9,6 +9,8 @@ import Link from "next/link";
 import OpenEye from "../icons/OpenEye";
 import CloseEye from "../icons/CloseEye";
 import styles from "./RegistrationAndLogin.module.css";
+import { toast } from "react-toastify";
+import { toastOptions } from "../../constants/toast";
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const { mutate } = useLogin();
@@ -26,11 +28,13 @@ function LoginPage() {
     mutate(data, {
       onSuccess: (data) => {
         // console.log(data);
+        toast.success("ورود شما با موفقیت انجام شد",toastOptions);
         setCookie("token", data?.data.token);
         router.push("/");
       },
       onError: (error) => {
         console.log(error.response.data.message);
+        toast.error("کابر گرامی ورود شما با مشکل مواجه شد!",toastOptions);
       },
     });
   };

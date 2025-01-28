@@ -12,14 +12,8 @@ import ProductsList from "../module/ProductsList";
 function ProductsManagementPage({ data }) {
   const modalState = useSelector((store) => store.modal);
   const modalDispatch = useDispatch();
-  const [searchProducts, setSearchProducts] = useState("");
-  const [itemOffset, setItemOffset] = useState(1);
   const [query, setQuery] = useState({ pageNumber: 1, searchProduct: "" });
-  // const { data, error, isLoading, isError, isFetching } = useProductDetails(
-  //   itemOffset,
-  //   searchProducts
-  // );
-
+  
   const products = data?.data || [];
   const totalPages = data?.totalPages || 3;
   const addProductHandler = () => {

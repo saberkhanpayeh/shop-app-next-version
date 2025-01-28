@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import CloseEye from "../icons/CloseEye";
 import OpenEye from "../icons/OpenEye";
 import styles from "./RegistrationAndLogin.module.css";
+import { toast } from "react-toastify";
+import { toastOptions } from "../../constants/toast";
 function RegistrationPage() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
@@ -26,9 +28,11 @@ function RegistrationPage() {
     mutate(data, {
       onSuccess: (res) => {
         // console.log(res.data.message);
+        toast.success("حساب کابری با موفقیت ایجاد شد،اکنون وارد سایت شوید",toastOptions);
         router.push("/login");
       },
       onError: (error) => {
+        toast.error("مشکلی در ایجاد حساب کابری پیش آمده است!",toastOptions);
         console.log(error.response.data.message);
       },
     });
@@ -36,7 +40,12 @@ function RegistrationPage() {
   return (
     <div className={styles.container}>
       {/* <img src={SiteLogo} alt="logo"/> */}
-      <a className={styles.image} href="/registration"rel="noopener noreferrer"  target="_blank"></a>
+      <a
+        className={styles.image}
+        href="/registration"
+        rel="noopener noreferrer"
+        target="_blank"
+      ></a>
       <h2>فرم ثبت نام</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input {...register("username")} placeholder="نام کابری" />
