@@ -1,4 +1,6 @@
+
 import ProductsManagementPage from "../components/templates/ProductsManagementPage";
+import { parse } from "cookie";
 
 export default function Home({ data }) {
   console.log(data);
@@ -12,7 +14,18 @@ export default function Home({ data }) {
 export async function getServerSideProps(context) {
   const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
   console.log(baseURL);
-  const { query } = context;
+  const { query, req } = context;
+  const cookies = req.headers.cookie ? parse(req.headers.cookie) : {};
+  const token = cookies.token;
+  console.log(token);
+  if (!token) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
   let data = [];
   try {
     const params = new URLSearchParams({

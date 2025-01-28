@@ -20,7 +20,7 @@ function SearchProducts({ query, setQuery }) {
       <button onClick={searchHandler}>
         <Search />
       </button>
-      <input type="text" placeholder="جستجو کالا" name="search" id="search" value={query.searchProduct}/>
+      <input type="text" placeholder="جستجو کالا" name="search" id="search"/>
     </form>
   );
 }
